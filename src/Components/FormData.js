@@ -19,7 +19,7 @@ const FormData = ({
   handleSubmit,
 }) => {
   return (
-        <div className="w-50 mx-auto">
+        <div className="w-75 mx-auto">
           <div className="text-center">
       {!show ? (
         <Button
@@ -40,7 +40,7 @@ const FormData = ({
       {show && (
           <Form className=" shadow-lg p-4 ">
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Owner's Name</Form.Label>
+              <Form.Label>Owner's Name*</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Name"
@@ -53,7 +53,7 @@ const FormData = ({
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Pet's Name</Form.Label>
+              <Form.Label>Pet's Name*</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Pet's Name"
@@ -66,7 +66,7 @@ const FormData = ({
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Label>Appointment Date</Form.Label>
+              <Form.Label>Appointment Date *</Form.Label>
               <Form.Control
                 type="date"
                 required
@@ -78,7 +78,7 @@ const FormData = ({
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Label>Appointment Time</Form.Label>
+              <Form.Label>Appointment Time*</Form.Label>
               <Form.Control
                 type="time"
                 required

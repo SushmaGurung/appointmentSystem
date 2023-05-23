@@ -26,7 +26,7 @@ function App() {
   // const [msg, setMsg] = useState("");
 
   const handleSubmit = () => {
-    if (lists) {
+    if (owner, pet, date, time) {
       setLists([
         ...lists,
         {
@@ -47,6 +47,8 @@ function App() {
       setTimeout(() => {
         setShow(!show);
       }, 1000);
+    }else{
+      alert("Fill all the required fields marked * !!")
     }
   };
 

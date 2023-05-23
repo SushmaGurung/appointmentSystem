@@ -39,10 +39,10 @@ const Search = ({
 
           <Dropdown.Menu>
             <Dropdown.Item onClick={descendingList} title="Descending">
-              <FaArrowUp /> Asc
+              <FaArrowUp /> Desc
             </Dropdown.Item>
             <Dropdown.Item onClick={ascendingList} title="Ascending">
-              <FaArrowDown /> Desc
+              <FaArrowDown /> Asc
             </Dropdown.Item>
             <Dropdown.Item onClick={sortPetList} title="Pet Name">
               <FaDog /> Pet
