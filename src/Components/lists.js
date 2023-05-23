@@ -15,6 +15,7 @@ const Lists = (props) => {
     <div key={props.id}>
     <Container>
       <Row >
+        
         <Card>
         <Col sm={8}>
       <Card.Header>{props.ownerName}</Card.Header>

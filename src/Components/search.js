@@ -21,19 +21,19 @@ const Search = ({
   sortPetList,
 }) => {
   return (
-    <Stack direction="horizontal" className="container" gap={3}>
+    <Stack direction="horizontal" className="my-3 mx-auto w-75" gap={2}>
       <Form.Control
         className="me-auto"
         placeholder="Search here..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <Button variant="secondary" onClick={search.search} title="Search">
+      <Button variant="success" size="sm" onClick={search.search} title="Search">
         <FaSearch />
       </Button>
-      <div className="bg-warning border">
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <div className="border">
+        <Dropdown >
+          <Dropdown.Toggle variant="outline-success" size= "sm" id="dropdown-basic">
             Sort by
           </Dropdown.Toggle>
 

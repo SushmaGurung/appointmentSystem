@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Lists from "./Components/lists";
 import Search from "./Components/search";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import FormData from "./Components/FormData";
 
 function App() {
-
   const getLocalStorageItems = () => {
     let list = localStorage.getItem("lists");
     if (list) {
@@ -108,113 +106,63 @@ function App() {
 
   return (
     <div className="container">
-         <h2>Appointment System</h2>
-      
-        <Button variant="primary" onClick={() => setShow(!show)}>
-          Add Appointment
-        </Button>
-        {show && (
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Owner's Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Name"
-                required
-                value={owner}
-                onChange={(e) => {
-                  setOwner(e.target.value);
-                }}
-              />
-            </Form.Group>
+      <h2 className="py-4 text-center text-success">Appointment System</h2>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Pet's Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Pet's Name"
-                required
-                value={pet}
-                onChange={(e) => {
-                  setPet(e.target.value);
-                }}
-              />
-            </Form.Group>
+      {/* form component */}
+      <FormData
+        show={show}
+        setShow={setShow}
+        setOwner={setOwner}
+        owner={owner}
+        pet={pet}
+        setPet={setPet}
+        date={date}
+        setDate={setDate}
+        time={time}
+        setTime={setTime}
+        notes={notes}
+        setNotes={setNotes}
+        handleSubmit = {handleSubmit}
+      />
 
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Label>Appointment Date</Form.Label>
-              <Form.Check
-                type="date"
-                required
-                value={date}
-                onChange={(e) => {
-                  setDate(e.target.value);
-                }}
-              />
-            </Form.Group>
+      {/* Search component */}
+      <Search
+        search={search}
+        setQuery={setQuery}
+        query={query}
+        ascendingList={ascendingList}
+        descendingList={descendingList}
+        sortOwnerList={sortOwnerList}
+        sortPetList={sortPetList}
+      />
 
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Label>Appointment Time</Form.Label>
-              <Form.Check
-                type="time"
-                required
-                value={time}
-                onChange={(e) => {
-                  setTime(e.target.value);
-                }}
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                value={notes}
-                onChange={(e) => {
-                  setNotes(e.target.value);
-                }}
-              />
-            </Form.Group>
-            {/* <p className="text-success">{msg}</p> */}
-
-            <Button variant="primary" onClick={handleSubmit}>
-              Book Now
-            </Button>
-          </Form>
-        )}
-      
-        {/* Search component */}
-       <Search search = {search} setQuery={setQuery} query= {query} ascendingList = {ascendingList} descendingList = {descendingList} sortOwnerList = {sortOwnerList} sortPetList = {sortPetList}/>
-
-      
       {/* lists component*/}
-      {lists && lists.length > 0 && lists != undefined
-        ? lists
-            .filter((list) => {
-              if (query == "") {
-                return list;
-              } else if (
-                list.ownerName.toLowerCase().includes(query.toLowerCase())
-              ) {
-                return list;
-              }
-              // ///////
-            })
-            .map((list) => (
-              <Lists
-                id={list.id}
-                ownerName={list.ownerName}
-                petName={list.petName}
-                date={list.date}
-                time={list.time}
-                notes={list.notes}
-                deleteList={deleteList}
-              />
-            ))
-        :  ( <p className="text-danger text-center py-4">"No data available"</p>)}
+      {lists && lists.length > 0 && lists != undefined ? (
+        lists
+          .filter((list) => {
+            if (query == "") {
+              return list;
+            } else if (
+              list.ownerName.toLowerCase().includes(query.toLowerCase())
+            ) {
+              return list;
+            }
+            // ///////
+          })
+          .map((list) => (
+            <Lists
+              id={list.id}
+              ownerName={list.ownerName}
+              petName={list.petName}
+              date={list.date}
+              time={list.time}
+              notes={list.notes}
+              deleteList={deleteList}
+            />
+          ))
+      ) : (
+        <p className="text-danger text-center py-4">"No data available"</p>
+      )}
     </div>
   );
 }
