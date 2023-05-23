@@ -21,7 +21,7 @@ const FormData = ({
   return (
         <div className="w-50 mx-auto">
           <div className="text-center">
-      {show ? (
+      {!show ? (
         <Button
           variant="success"
           className="m-3 align-center"
@@ -37,7 +37,7 @@ const FormData = ({
       )}
           </div>
 
-      {!show && (
+      {show && (
           <Form className=" shadow-lg p-4 ">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Owner's Name</Form.Label>

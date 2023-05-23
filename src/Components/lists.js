@@ -12,32 +12,22 @@ const Lists = (props) => {
 
   
   return (
-    <div key={props.id}>
-    <Container>
-      <Row >
-        
-        <Card>
-        <Col sm={8}>
-      <Card.Header>{props.ownerName}</Card.Header>
-      <Card.Body>
-        <Card.Title>{props.date}  {props.time}</Card.Title>
-        <Card.Text>{props.petName}</Card.Text>
-        <Card.Text>
-        {props.notes && props.notes}
-        </Card.Text>
-      </Card.Body>
+    <Row key={props.id} className = "border my-3 p-3 w-75 mx-auto text-center">
+        <Col xs={6} md={4} lg= {3}>
+        <h3>{props.date}  </h3>
+        <h4>{props.time}</h4>
         </Col>
-    </Card>
-        <Col sm={4}>
-        {props.id &&  <Button variant="danger"  size="sm" onClick={() =>props.deleteList(props.id)}> <FaTrash/>
+        <Col xs={6} md={4} lg= {3}>
+      <p>{props.ownerName}</p>
+      <p>{props.petName}</p>
+<p>{props.notes && props.notes}</p>
+        </Col>
+        <Col xs={6} md={4} lg={6} className = "ms-0">
+        {props.id &&  <Button variant="danger" title ="Cancel" style={{ padding: "0.1rem 0.2rem 0.2rem"}} size="sm" onClick={() =>props.deleteList(props.id)}> <FaTrash/>
         </Button>}
-          </Col>
+        </Col>
       </Row>
-      
-    </Container>
 
-    
-    </div>
   )
 }
 
