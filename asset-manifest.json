@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/SushmaGurung/appointmentSystem/static/css/main.c2cab247.css",
-    "main.js": "/SushmaGurung/appointmentSystem/static/js/main.068cd843.js",
+    "main.js": "/SushmaGurung/appointmentSystem/static/js/main.5a3c3dfd.js",
     "index.html": "/SushmaGurung/appointmentSystem/index.html",
     "main.c2cab247.css.map": "/SushmaGurung/appointmentSystem/static/css/main.c2cab247.css.map",
-    "main.068cd843.js.map": "/SushmaGurung/appointmentSystem/static/js/main.068cd843.js.map"
+    "main.5a3c3dfd.js.map": "/SushmaGurung/appointmentSystem/static/js/main.5a3c3dfd.js.map"
   },
   "entrypoints": [
     "static/css/main.c2cab247.css",
-    "static/js/main.068cd843.js"
+    "static/js/main.5a3c3dfd.js"
   ]
 }
