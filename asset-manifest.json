@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/SushmaGurung/static/css/main.c2cab247.css",
-    "main.js": "/SushmaGurung/static/js/main.5a3c3dfd.js",
-    "index.html": "/SushmaGurung/index.html",
-    "main.c2cab247.css.map": "/SushmaGurung/static/css/main.c2cab247.css.map",
-    "main.5a3c3dfd.js.map": "/SushmaGurung/static/js/main.5a3c3dfd.js.map"
+    "main.css": "/appointmentSystem/static/css/main.c2cab247.css",
+    "main.js": "/appointmentSystem/static/js/main.5a3c3dfd.js",
+    "index.html": "/appointmentSystem/index.html",
+    "main.c2cab247.css.map": "/appointmentSystem/static/css/main.c2cab247.css.map",
+    "main.5a3c3dfd.js.map": "/appointmentSystem/static/js/main.5a3c3dfd.js.map"
   },
   "entrypoints": [
     "static/css/main.c2cab247.css",
