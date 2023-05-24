@@ -18,7 +18,7 @@ const Lists = (props) => {
 <p style={{fontSize : "0.8rem"}}> {props.notes && (<em> Note : </em>)} { props.notes}</p>
         </Col>
         <Col xs={6} md={4} lg={2} className = "d-flex justify-content-center align-self-center">
-        {props.id &&  <Button variant="danger" title ="Cancel" style={{ padding: "0.1rem 0.2rem 0.2rem"}} size="sm" onClick={() =>props.deleteList(props.id)}> <FaTrashAlt/>
+        {props.ownerName &&  <Button variant="danger" title ="Cancel" style={{ padding: "0.1rem 0.2rem 0.2rem"}} size="sm" onClick={() =>props.deleteList(props.id)}> <FaTrashAlt/>
         </Button>}
         </Col>
       </Row>

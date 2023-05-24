@@ -4,16 +4,16 @@ import Form from "react-bootstrap/Form";
 import "./formdata.css";
 
 const FormData = (formProps) => {
-const {show, handleChange, handleSubmit, inputs}= formProps
+const { handleChange, handleSubmit, state}= formProps
   return (
     <div className="w-75 mx-auto">
-      {show && (
+      {state.show && (
         <Form className=" shadow-lg p-4 ">
           <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Owner's Name*</Form.Label>
             <Form.Control
               name="owner"
-              value={inputs.owner}
+              value={state.owner}
               placeholder="Owner's Name"
               required
               onChange={handleChange}
@@ -25,7 +25,7 @@ const {show, handleChange, handleSubmit, inputs}= formProps
             <Form.Control
               type="text"
               name="pet"
-              value={inputs.pet}
+              value={state.pet}
               placeholder="Pet's Name"
               required
               onChange={handleChange}
@@ -37,7 +37,7 @@ const {show, handleChange, handleSubmit, inputs}= formProps
             <Form.Control
               type="date"
               name="date"
-              value={inputs.date}
+              value={state.date}
               required
               onChange={handleChange}
             />
@@ -48,7 +48,7 @@ const {show, handleChange, handleSubmit, inputs}= formProps
             <Form.Control
               type="time"
               name="time"
-              value={inputs.time}
+              value={state.time}
               required
               onChange={handleChange}
             />
@@ -58,7 +58,7 @@ const {show, handleChange, handleSubmit, inputs}= formProps
             <Form.Control
               as="textarea"
               name="notes"
-              value={inputs.notes}
+              value={state.notes}
               rows={3}
               placeholder= "Comments/Notes"
               onChange={handleChange}
