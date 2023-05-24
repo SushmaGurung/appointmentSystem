@@ -11,15 +11,8 @@ import {
   FaSearch,
 } from "react-icons/fa";
 
-const Search = ({
-  search,
-  setQuery,
-  query,
-  ascendingList,
-  descendingList,
-  sortOwnerList,
-  sortPetList,
-}) => {
+const Search = (searchProps) => {
+  const {search,setQuery,query,ascendingList, descendingList,sortOwnerList,sortPetList} = searchProps
   return (
     <Stack direction="horizontal" className="my-3 mx-auto w-75" gap={2}>
       <Form.Control

@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import FormData from "./Components/FormData";
 import Lists from "./Components/lists";
 import Search from "./Components/search";
-import FormData from "./Components/FormData";
+import { clientSchema } from "./Validation/formValidation";
 
-function App() {
+const App = () => {
   const getLocalStorageItems = () => {
     let list = localStorage.getItem("lists");
     if (list) {
@@ -14,41 +15,42 @@ function App() {
     }
   };
 
-  // const [lists, setLists] = useState([]);
   const [lists, setLists] = useState(getLocalStorageItems);
-  const [owner, setOwner] = useState("");
-  const [pet, setPet] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [notes, setNotes] = useState("");
   const [query, setQuery] = useState("");
   const [show, setShow] = useState(false);
-  // const [msg, setMsg] = useState("");
+  const [inputs, setInputs] = useState({
+    owner: "",
+    pet: "",
+    date: "",
+    time: "",
+    notes: "",
+  });
 
-  const handleSubmit = () => {
-    if (owner, pet, date, time) {
-      setLists([
-        ...lists,
-        {
-          id: new Date().getTime().toString(),
-          ownerName: owner,
-          petName: pet,
-          date,
-          time,
-          notes,
-        },
-      ]);
-      setOwner("");
-      setPet("");
-      setDate("");
-      setTime("");
-      setNotes("");
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setInputs({ ...inputs, [name]: value });
+  };
+
+  const handleSubmit = async () => {
+    const newInput = {
+      ...inputs,
+      id: new Date().getTime().toString(),
+    };
+
+    const isValid = await clientSchema.isValid(newInput);
+    console.log(isValid);
+    if (isValid) {
+      setLists([...lists, newInput]);
 
       setTimeout(() => {
         setShow(!show);
       }, 1000);
-    }else{
-      alert("Fill all the required fields marked * !!")
+
+      setInputs({ owner: "", pet: "", date: "", time: "", notes: "" });
+    } else {
+      alert("Fill all the required fields marked(*)");
     }
   };
 
@@ -60,21 +62,20 @@ function App() {
   // delete list
 
   const deleteList = (id) => {
-    setLists(lists.filter((list) => list.id !== id));
+    if(lists){
+    setLists(lists.filter((list) => list.id !== id));}
   };
 
-  // search items
+  //   search items
   const search = () => {
-    return lists.filter((item) => item.ownerName.toLowerCase().includes(query));
+    return lists.filter((item) => item.owner.toLowerCase().includes(query));
   };
 
-  // sorting items
+  //   sorting items
   const ascendingList = () => {
     let allData = [...lists];
     if (allData.length > 0) {
-      let result = allData.sort((a, b) =>
-        a.ownerName.localeCompare(b.ownerName)
-      );
+      let result = allData.sort((a, b) => a.owner.localeCompare(b.owner));
       setLists(result);
     }
   };
@@ -82,9 +83,7 @@ function App() {
   const descendingList = () => {
     let allData = [...lists];
     if (allData.length > 0) {
-      let result = allData.sort((a, b) =>
-        b.ownerName.localeCompare(a.ownerName)
-      );
+      let result = allData.sort((a, b) => b.owner.localeCompare(a.owner));
       setLists(result);
     }
   };
@@ -92,51 +91,69 @@ function App() {
   const sortOwnerList = () => {
     let allData = [...lists];
     if (allData.length > 0) {
-      let result = allData.sort((a, b) =>
-        a.ownerName.localeCompare(b.ownerName)
-      );
+      let result = allData.sort((a, b) => a.owner.localeCompare(b.owner));
       setLists(result);
     }
   };
   const sortPetList = () => {
     let allData = [...lists];
     if (allData.length > 0) {
-      let result = allData.sort((a, b) => a.petName.localeCompare(b.petName));
+      let result = allData.sort((a, b) => a.pet.localeCompare(b.pet));
       setLists(result);
     }
   };
 
-  return (
-    <div className="container">
-      <h2 className="py-4 text-center text-success">Appointment System</h2>
+  const formProps = {
+    show,
+    setShow,
+    handleChange,
+    handleSubmit,
+    inputs
+  };
 
+  const searchProps = {
+    search,
+    setQuery,
+    query,
+    ascendingList,
+    descendingList,
+    sortOwnerList,
+    sortPetList,
+  };
+
+
+
+  return (
+    <>
+      <h2 className="py-4 text-center text-light bg-success">Appointment System</h2>
+
+    <div className="container">
+      <div className="text-center">
+        {!show ? (
+          <Button
+            variant="success"
+            className="m-3 align-center"
+            size="sm"
+            onClick={() => setShow(!show)}
+          >
+            Click to Register
+          </Button>
+        ) : (
+          <Button
+            variant="danger"
+            className="m-3 "
+            size="sm"
+            onClick={() => setShow(!show)}
+          >
+            Close
+          </Button>
+        )}
+      </div>
       {/* form component */}
-      <FormData
-        show={show}
-        setShow={setShow}
-        setOwner={setOwner}
-        owner={owner}
-        pet={pet}
-        setPet={setPet}
-        date={date}
-        setDate={setDate}
-        time={time}
-        setTime={setTime}
-        notes={notes}
-        setNotes={setNotes}
-        handleSubmit = {handleSubmit}
-      />
+      <FormData {...formProps} />
 
       {/* Search component */}
-      <Search
-        search={search}
-        setQuery={setQuery}
-        query={query}
-        ascendingList={ascendingList}
-        descendingList={descendingList}
-        sortOwnerList={sortOwnerList}
-        sortPetList={sortPetList}
-      />
+      <Search {...searchProps} />
 
       {/* lists component*/}
       {lists && lists.length > 0 && lists != undefined ? (
@@ -144,29 +161,26 @@ function App() {
           .filter((list) => {
             if (query == "") {
               return list;
-            } else if (
-              list.ownerName.toLowerCase().includes(query.toLowerCase())
-            ) {
+            } else if (list.owner.toLowerCase().includes(query.toLowerCase())) {
               return list;
             }
             // ///////
           })
-          .map((list) => (
-            <Lists
-              id={list.id}
-              ownerName={list.ownerName}
-              petName={list.petName}
-              date={list.date}
-              time={list.time}
-              notes={list.notes}
-              deleteList={deleteList}
-            />
-          ))
+          .map((list) => <Lists 
+          id = {list.id}
+          ownerName = {list.owner}
+          petName = {list.pet}
+          date = {list.date}
+          time= {list.time}
+          notes = {list.notes}
+          deleteList = {deleteList}
+           />)
       ) : (
         <p className="text-danger text-center py-4">"No data available"</p>
       )}
     </div>
+    </>
   );
-}
+};
 
 export default App;

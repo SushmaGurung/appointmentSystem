@@ -6,9 +6,6 @@ import { FaTrashAlt} from "react-icons/fa";
 
 // const Lists = ({id, ownerName, petName, date, time, notes}) => {
 const Lists = (props) => {
-// console.log(props)
-
-  
   return (
     <Row key={props.id} className = "border my-3 p-3 w-75 mx-auto text-center">
         <Col xs={6} md={4} lg= {5} className = "  rounded-2 p-2 d-flex flex-column justify-content-center">
